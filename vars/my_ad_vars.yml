@@ -1,0 +1,3 @@
+---
+#- ad_domain_name: ad1.${guid}.example.opentlc.com
+- ad_domain_name: ad1.5edf.example.opentlc.com

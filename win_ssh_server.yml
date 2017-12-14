@@ -1,0 +1,15 @@
+---
+- name: setup openssh on windows server
+  hosts: windows
+  gather_facts: true
+  become: true
+  vars_files:
+    - vars/ssh_vars.yml
+
+  pre_tasks:
+    - debug: var=hostvars
+
+  roles:
+    - win_package_install
+    - win_service_manage
+    - win_firewall

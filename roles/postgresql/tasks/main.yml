@@ -1,0 +1,43 @@
+---
+- name: install postgres
+  tags:
+    - postgresql
+    - yum
+  yum:
+    name: postgresql-server
+    state: latest
+
+- name: enable postgresql at boot
+  tags:
+    - postgresql
+    - service
+  service:
+    name: postgresql
+    enabled: yes
+
+- name: Check for postgresql
+  tags:
+    - postgresql
+  stat:
+    path: "{{ pgsql_data_dir }}/PG_VERSION"
+  register: pgdata_dir_version
+
+- name: initilize postgresql
+  tags:
+    - postgresql
+  command: postgresql-setup initdb
+  when: not pgdata_dir_version.stat.exists
+
+- name: initilize postgresql some more
+  tags:
+    - postgresql
+  command: chkconfig postgresql on
+  when: not pgdata_dir_version.stat.exists
+
+- name: start postgresql
+  tags:
+    - postgresql
+    - service
+  service:
+    name: postgresql.service
+    state: started

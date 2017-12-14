@@ -1,0 +1,13 @@
+---
+- name: install ad
+  hosts: windows
+  gather_facts: true
+  become: true
+  vars_files:
+    - vars/my_ad_vars.yml
+
+  pre_tasks:
+    - debug: var=hostvars
+
+  roles:
+    - win_ad_install

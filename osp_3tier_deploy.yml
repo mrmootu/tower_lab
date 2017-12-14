@@ -1,0 +1,70 @@
+- name: build the dynamic inventory
+  hosts: jumpbox
+  gather_facts: false
+  vars:
+    - GUID: 403b
+
+  tasks:
+    - name: Fetch Instance Info
+      os_server_facts:
+        cloud: ospcloud
+        region_name: RegionOne
+      register: result
+
+    #- debug: var="{{ result }}"
+
+    - name: Add host to metadata group
+      add_host:
+        name: "{{ item.public_v4 }}"
+        group: "{{ item.metadata.group }}"
+      with_items: "{{result.ansible_facts.openstack_servers}}"
+
+    - name: Add host to deployment name group
+      add_host:
+        name: "{{ item.public_v4 }}"
+        group: "{{ item.metadata.deployment_name }}"
+      with_items: "{{result.ansible_facts.openstack_servers}}"
+
+    #- debug: var=hostvars
+
+- name: configure yum repositories on all servers
+  hosts: dev
+  gather_facts: false # remove later! speeds up testing
+  become: true
+  roles:
+    - rhel7
+  tags: tested
+
+- name: deploy haproxy
+  hosts: frontendservers
+  gather_facts: false
+  become: true
+  roles:
+    - haproxy
+  vars:
+    - GUID: "{{GUID}}"
+  tags: tested
+
+- name: deploy tomcat
+  hosts: webservers
+  gather_facts: false
+  become: true
+  roles:
+    - tomcat
+  tags: tested
+
+- name: deploy postgres
+  hosts: databaseservers
+  gather_facts: false
+  become: true
+  roles:
+    - postgresql
+  tags: tested
+
+- name: deploy apache
+  hosts: webservers
+  gather_facts: false
+  become: true
+  roles:
+    - apache
+  tags: tested

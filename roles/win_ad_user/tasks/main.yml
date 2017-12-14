@@ -1,0 +1,9 @@
+---
+- name: "create ad user from a list"
+  win_domain_user:
+    name: "{{ item.name }}"
+    firstname: "{{ item.firstname }}"
+    surname: "{{ item.surname }}"
+    password: "{{ item.password }}"
+    email: "{{ item.email }}"
+  with_items: "{{ user_info }}"

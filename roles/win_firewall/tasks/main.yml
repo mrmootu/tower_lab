@@ -1,0 +1,10 @@
+---
+- name: "create a firewall rule based on {{ service_name }} on windows server"
+  win_firewall_rule:
+    name: "{{ service_name }}"
+    localport: "{{ local_port }}"
+    action: allow
+    direction: in
+    protocol: "{{ protocol_name }}"
+    state: present
+    enabled: yes

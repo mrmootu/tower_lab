@@ -1,0 +1,33 @@
+---
+
+- name: osp provisioning frontend
+  hosts: jumpbox
+  gather_facts: false
+  roles:
+    - role: osp
+      server_name: frontend1-test
+      server_group: frontendservers
+
+- name: osp provisioning web1
+  hosts: jumpbox
+  gather_facts: false
+  roles:
+    - role: osp
+      server_name: web1-test
+      server_group: webservers
+
+- name: osp provisioning web2
+  hosts: jumpbox
+  gather_facts: false
+  roles:
+    - role: osp
+      server_name: web2-test
+      server_group: webservers
+
+- name: osp provisioning appdb1
+  hosts: jumpbox
+  gather_facts: false
+  roles:
+    - role: osp
+      server_name: appdb1-test
+      server_group: databaseservers

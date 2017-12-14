@@ -1,0 +1,10 @@
+---
+- name: create accounts on active directory
+  hosts: windows
+  gather_facts: true
+  become: true
+  vars_files:
+    - vars/user_vars.yml
+
+  roles:
+    - win_ad_user
