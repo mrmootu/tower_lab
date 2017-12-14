@@ -17,17 +17,17 @@ support
 
 [frontends]
 ## These are the frontends
-frontend1.b5f1.internal ansible_ssh_host=frontend1.b5f1.example.opentlc.com
+frontend1.f191.internal ansible_ssh_host=frontend1.b5f1.example.opentlc.com
 
 [apps]
 ## These are the apps
-app1.b5f1.internal ansible_ssh_host=app1.b5f1.example.opentlc.com
-app2.b5f1.internal ansible_ssh_host=app2.b5f1.example.opentlc.com
+app1.f191.internal ansible_ssh_host=app1.b5f1.example.opentlc.com
+app2.f191.internal ansible_ssh_host=app2.b5f1.example.opentlc.com
 
 [appdbs]
 ## These are the appdbs
-appdb1.b5f1.internal ansible_ssh_host=appdb1.b5f1.example.opentlc.com
+appdb1.f191.internal ansible_ssh_host=appdb1.b5f1.example.opentlc.com
 
 ## These are the support
 [support]
-support1.b5f1.internal ansible_ssh_host=support1.b5f1.example.opentlc.com
+support1.f191.internal ansible_ssh_host=support1.b5f1.example.opentlc.com
