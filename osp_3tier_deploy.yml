@@ -2,7 +2,7 @@
   hosts: jumpbox
   gather_facts: false
   vars:
-    - GUID: 403b
+    - GUID: f191
 
   tasks:
     - name: Fetch Instance Info
