@@ -25,7 +25,7 @@
         group: "{{ item.metadata.deployment_name }}"
       with_items: "{{result.ansible_facts.openstack_servers}}"
 
-    #- debug: var=hostvars
+    - debug: var=hostvars
 
 - name: configure yum repositories on all servers
   hosts: dev
